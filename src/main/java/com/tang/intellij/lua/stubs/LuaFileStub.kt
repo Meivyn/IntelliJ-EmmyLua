@@ -18,6 +18,7 @@ package com.tang.intellij.lua.stubs
 
 import com.intellij.lang.ASTNode
 import com.intellij.openapi.diagnostic.Logger
+import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiFile
 import com.intellij.psi.StubBuilder
 import com.intellij.psi.stubs.*
@@ -36,7 +37,11 @@ class LuaFileElementType : IStubFileElementType<LuaFileStub>(LuaLanguage.INSTANC
     companion object {
         val LOG = Logger.getInstance(LuaFileElementType::class.java)
     }
-
+    
+    override fun shouldBuildStubFor(file: VirtualFile): Boolean {
+        return if (file.name == "luaserver.lua") false else super.shouldBuildStubFor(file)
+    }
+    
     // debug performance
     override fun parseContents(chameleon: ASTNode): ASTNode? {
         val psi = chameleon.psi
