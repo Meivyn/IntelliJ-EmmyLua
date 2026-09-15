@@ -77,8 +77,7 @@ class LuaStringArgIndex : FileBasedIndexExtension<String, LuaStringArgIndex.LuaC
             val isColon = call.isMethodColonCall
             call.argList.forEachIndexed { index, arg ->
                 val name = call.expr.name
-                if (name != null && arg is LuaLiteralExpr && arg.kind == LuaLiteralKind.String && !arg.tooLarge
-rString) {
+                if (name != null && arg is LuaLiteralExpr && arg.kind == LuaLiteralKind.String && !arg.tooLargerString) {
                     val sv = arg.stringValue
                     if ('\n' in sv || sv.length in 2..128) {
                         val offset = arg.node.startOffset
