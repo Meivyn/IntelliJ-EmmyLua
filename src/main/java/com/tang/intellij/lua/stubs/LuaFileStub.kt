@@ -39,7 +39,7 @@ class LuaFileElementType : IStubFileElementType<LuaFileStub>(LuaLanguage.INSTANC
     }
     
     override fun shouldBuildStubFor(file: VirtualFile): Boolean {
-        return if (file.name == "luaserver.lua") false else super.shouldBuildStubFor(file)
+        return file.name != "luaserver.lua" && super.shouldBuildStubFor(file)
     }
     
     // debug performance
