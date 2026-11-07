@@ -169,6 +169,8 @@ project(":") {
         intellijPlatform {
             intellijIdeaUltimate(buildVersionData.ideaSDKVersion)
             bundledModule("intellij.spellchecker")
+            // Required for XDebugProcess/XLineBreakpoint/XSourcePosition in newer IntelliJ platform builds.
+            bundledModule("intellij.platform.xdebugger")
         }
     }
 
