@@ -23,9 +23,9 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.ByteArrayOutputStream
 
 plugins {
-    id("org.jetbrains.intellij.platform") version "2.20.0"
-    id("org.jetbrains.kotlin.jvm").version("2.4.21")
-    id("de.undercouch.download").version("5.7.0")
+    id("org.jetbrains.intellij.platform") version "2.7.0"
+    id("org.jetbrains.kotlin.jvm").version("2.3.0")
+    id("de.undercouch.download").version("5.3.0")
 }
 
 data class BuildData(
@@ -33,6 +33,7 @@ data class BuildData(
     // https://www.jetbrains.com/intellij-repository/releases
     val ideaSDKVersion: String,
     val sinceBuild: String,
+    val untilBuild: String,
     val archiveName: String = "IntelliJ-EmmyLua",
     val jvmTarget: String = "1.8",
     val targetCompatibilityLevel: JavaVersion = JavaVersion.VERSION_11,
@@ -48,6 +49,7 @@ val buildDataList = listOf(
         ideaSDKShortVersion = "2026.3",
         ideaSDKVersion = "2026.3",
         sinceBuild = "253",
+        untilBuild = "263.*",
         bunch = "212",
         targetCompatibilityLevel = JavaVersion.VERSION_21,
         buildJdkVersion = JavaVersion.VERSION_25,
@@ -247,6 +249,7 @@ project(":") {
         patchPluginXml {
             dependsOn("installEmmyDebugger")
             sinceBuild.set(buildVersionData.sinceBuild)
+            untilBuild.set(buildVersionData.untilBuild)
         }
 
         publishPlugin {
