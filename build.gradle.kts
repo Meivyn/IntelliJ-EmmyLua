@@ -171,6 +171,8 @@ project(":") {
             bundledModule("intellij.spellchecker")
             // XDebugProcess, XLineBreakpoint, and XSourcePosition are in this module on IntelliJ Platform 2026.3.
             bundledModule("intellij.platform.debugger")
+            // XSourcePositionImpl, XStackFrameContainerEx, and XDebuggerActions are in the debugger implementation module.
+            bundledModule("intellij.platform.debugger.impl")
         }
     }
 
